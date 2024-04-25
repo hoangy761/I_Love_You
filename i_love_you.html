@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Baby Love You</title>
+
+    <style>
+        body {
+
+            background-color: rgb(231, 121, 140);
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            overflow: hidden;
+
+        }
+
+        .text {
+
+            font-size: 4em;
+
+            font-weight: bold;
+
+            padding-bottom: 50px;
+
+            color: rgb(245, 238, 238);
+
+            text-align: center;
+
+            animation: appear 5s ease-in-out;
+
+        }
+
+        @keyframes appear {
+
+            0% {
+
+                opacity: 0;
+
+            }
+
+            100% {
+
+                opacity: 1;
+
+            }
+
+        }
+
+        .heart {
+
+            position: absolute;
+
+            font-size: 50px;
+
+            color: white;
+
+            animation: float 5s linear infinite;
+
+        }
+
+        .animationImg {
+            position: absolute;
+
+            width: 70px;
+
+            height: 70px;
+            animation: float 5s linear infinite;
+        }
+
+        .hiden {
+            display: none;
+        }
+
+        /* CSS */
+        .button-1 {
+            outline: 0;
+            border: 0;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            color: #000;
+            background: #fff;
+            line-height: 30px;
+            border-radius: 40px;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: 600;
+            box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px, rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+            transition: all 0.2s;
+        }
+
+        .button-1:hover,
+        .button-1:focus {
+            box-shadow: rgb(246, 84, 174) -2px -2px 0px 2px, rgb(255, 198, 0) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+            transform: scale(1.01);
+        }
+
+        .emiu {
+            background-image: url('1.jpg');
+        }
+
+
+
+
+        @keyframes float {
+
+            0% {
+
+                transform: translate(-50%, -50%) rotate(0deg);
+
+            }
+
+            100% {
+
+                transform: translate(150%, 150%) rotate(360deg);
+
+            }
+
+        }
+    </style>
+
+</head>
+
+<div class="text hiden" id="text">
+    My baby love you so much forever you and I ❤️ ❤️ I love you oh! I love you so much
+    forever you and I...❤️
+</div>
+<button class="button-1" onclick="handleShow()" id="btn">Click đi bé Huệ❤️</button>
+
+
+<div class="heart hiden"></div>
+<div class="heart hiden"></div>
+<div class="heart hiden"></div>
+<img src="1.jpg" alt="hinh" class="animationImg hiden" />
+<img src="1.jpg" alt="hinh" class="animationImg hiden" />
+<img src="1.jpg" alt="hinh" class="animationImg hiden" />
+<audio id="myAudio">
+    <source src="Download.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script>
+    var audio = document.getElementById("myAudio");
+
+    // Generate and add hearts to the page
+    function handleShow() {
+        const btn = document.getElementById("btn")
+
+        btn.classList.add("hiden")
+        audio.play()
+
+        setInterval(createHeart, 1000);
+        showText()
+    }
+
+
+    function createHeart() {
+
+        const hearts = document.getElementsByClassName('heart');
+        const animationImgs = document.getElementsByClassName('animationImg');
+        var heart
+        var animationImg
+        for (let i = 0; i < hearts.length; i++) {
+            hearts[i].classList.remove("hiden")
+            heart = hearts[i]
+
+            heart.textContent = '❤️'; // Unicode heart symbol
+
+            heart.style.left = `${Math.random() * 100}vw`;
+
+            heart.style.top = `${Math.random() * 100}vh`;
+        }
+        for (let i = 0; i < animationImgs.length; i++) {
+            animationImgs[i].classList.remove("hiden")
+            animationImg = animationImgs[i]
+
+            animationImg.style.left = `${Math.random() * 100}vw`;
+
+            animationImg.style.top = `${Math.random() * 100}vh`;
+        }
+
+
+    }
+
+
+
+    function showText() {
+        const text = document.getElementById('text')
+        const textElements = document.querySelectorAll('.text');
+        setTimeout(() => {
+
+            text.classList.remove("hiden")
+            textElements.forEach((textElement, index) => {
+
+                const text = textElement.textContent;
+
+                textElement.textContent = '';
+
+                let i = 0;
+
+                function animateText() {
+
+                    if (i < text.length) {
+
+                        textElement.textContent += text[i];
+
+                        i++;
+
+                        setTimeout(animateText, 100);
+                    }
+
+                }
+
+                animateText();
+
+            });
+        }, 2500);
+
+    }
+
+</script>
+
+</body>
+
+</html>
